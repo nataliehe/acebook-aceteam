@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var exphbs = require('express-handlebars')
+var bodyParser = require('body-parser')
 
 var homeRouter = require('./routes/home');
 var postsRouter = require('./routes/posts');
@@ -21,11 +22,22 @@ app.engine('.hbs', exphbs({
   // helpers: viewsPath + '/helpers'
 }));
 
+// Set static filepaths
+app.use(express.static(path.join(__dirname, '/public')));
+app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css/')));
+app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
+app.use('/js', express.static(path.join(__dirname, 'node_modules/popper.js/dist/')));
+app.use('/js', express.static(path.join(__dirname, 'node_modules/jquery/dist/')));
+
+//bodyParser config
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true }));
+
+//misc app config
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 // route setup
 app.use('/', homeRouter);
