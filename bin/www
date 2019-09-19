@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 /**
  * Module dependencies.
  */
@@ -8,7 +6,7 @@ var app = require('../app');
 var debug = require('debug')('acebook:server');
 var http = require('http');
 var mongoose = require('mongoose');
-
+require('dotenv').config();
 /**
  * Get port from environment and store in Express.
  */
