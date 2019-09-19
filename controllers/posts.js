@@ -2,17 +2,22 @@ var Post = require('../models/post');
 
 var PostsController = {
   Index: function(req, res) {
-    Post.find(function(err, posts) {
+    Post.find({}).sort({created: -1}).exec(function(err, posts) {
       if (err) { throw err; }
-
-      res.render('posts/index', { posts: posts });
+      var posts_formatted = posts.map( post => {
+        var post_f = {};
+        post_f["message"] = post.message;
+        post_f["created"] = post.created.toString().slice(0,21);
+        return post_f;
+      });
+      res.render('posts/index', { posts: posts_formatted });
     });
   },
   New: function(req, res) {
     res.render('posts/new', {});
   },
   Create: function(req, res) {
-    var post = new Post(req.body);
+    var post = new Post({ message: req.body.message, created: req.body.created });
     post.save(function(err) {
       if (err) { throw err; }
 

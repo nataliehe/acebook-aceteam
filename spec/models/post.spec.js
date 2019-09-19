@@ -24,7 +24,7 @@ describe('Post model', function() {
   });
 
   it('can save a post', function(done) {
-    var post = new Post({ message: 'some message' });
+    var post = new Post({ message: 'some message', created: "2019-09-19" });
 
     post.save(function(err) {
       expect(err).toBeNull();
@@ -32,7 +32,8 @@ describe('Post model', function() {
       Post.find(function(err, posts) {
         expect(err).toBeNull();
 
-        expect(posts[0]).toMatchObject({ message: 'some message' });
+        expect(posts[0].message).toEqual(post.message);
+        expect(posts[0].created).toEqual(post.created);
         done();
       });
     });
