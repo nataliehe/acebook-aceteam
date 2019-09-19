@@ -18,6 +18,7 @@ app.set('view engine', '.hbs');
 app.engine('.hbs', exphbs({
   extname: '.hbs',
   defaultLayout: 'layout',
+    layoutsDir: viewsPath,
   partialsDir: viewsPath + '/partials'
   // helpers: viewsPath + '/helpers'
 }));
@@ -40,8 +41,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // route setup
-app.use('/', homeRouter);
-app.use('/posts', postsRouter);
+// app.use('/home', homeRouter);
+app.use('/', postsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
