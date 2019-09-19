@@ -13,15 +13,13 @@ var PostsController = {
       res.render('posts/index', { posts: posts_formatted });
     });
   },
-  New: function(req, res) {
-    res.render('posts/new', {});
-  },
+
   Create: function(req, res) {
     var post = new Post({ message: req.body.message, created: req.body.created });
     post.save(function(err) {
       if (err) { throw err; }
 
-      res.status(201).redirect('/posts');
+      res.status(201).redirect('/');
     });
   }
 };
