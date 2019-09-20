@@ -2,25 +2,26 @@
 <br/>
 <br/>
 <div class="row justify-content-center">
-  {{!-- <div style="border: 4px solid green;"> --}}
-  <div class="col-10">
-</div>
 <div class="card">
   <div class="card-body">
     <form action="/sign_up" method="POST">
-      <h3 class="card-title">Login </h3>
+      <h3 class="card-title">Sign up</h3>
       <p class="card-text">Name
-
-      <input type="email" id="exampleDropdownFormEmail1" name="name"></p>
+        <input type="text" id="signUpName" name="name" required>
+      </p>
       <div class="invalid-feedback">
          Please enter a valid username.
       </div>
+
       <p class="card-text">Email
-        <input type="email" id="exampleDropdownFormEmail1" name="email_address">
+        <input type="email" id="signUpEmail" name="email" required>
       </p>
+
       <p class="card-text">Password
-      <input type="password" id="exampleDropdownFormPassword1" name="password"></p>
+        <input type="password" id="signUpPassword" name="password" required>
+      </p>
+
       <button type="submit" class="btn btn-primary">Sign up</button>
     </form>
-  <div class="dropdown-divider"></div>
+  </div>
 </div>
