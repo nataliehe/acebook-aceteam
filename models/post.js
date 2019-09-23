@@ -5,7 +5,14 @@ var PostSchema = new mongoose.Schema({
   created: {
        type: Date,
        default: Date.now
-   }
+   },
+  comments: [{
+    message: String,
+    created: {
+      type: Date,
+      default: Date.now
+    }
+  }]
 });
 
 var Post = mongoose.model('Post', PostSchema);
