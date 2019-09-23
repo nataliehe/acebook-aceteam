@@ -5,23 +5,23 @@
 
 <div class="card">
   <div class="card-body">
-    <form action="/" method="POST">
+    <form action="/posts" method="POST">
       <h3 class="card-title">Write a new message </h3>
-      <input type="text" name="message" required>
+      <textarea rows="5" cols="50" name="message" required></textarea>
+      <input type="hidden" name="user" value={{user}}>
       <button type="submit" class="btn btn-primary" value="submit">Submit</button>
     </form>
 
-    <div class="dropdown-divider"></div>
+    <!-- <div class="dropdown-divider"></div> -->
 
     <ul class="posts">
       {{#each posts}}
-      <li>{{this.message}}
-        <p>{{this.created}}</p>
+      <hr>
+      <li>
+        <p>{{this.user}} {{this.created}}</p>
+        <pre>{{this.message}}</pre>
       </li>
       {{/each}}
     </ul>
   </div>
 </div>
-
-{{!-- <a class="new-post-link" href="/posts/new">New post</a>
- --}}
