@@ -9,20 +9,20 @@ var PostsController = {
         var post_f = {};
         post_f["message"] = post.message;
         post_f["created"] = post.created.toString().slice(0,21);
+        post_f["user"] = post.user;
         post_f["id"] = post._id;
         post_f["comments"] = post.comments;
         return post_f;
       });
-      res.render('posts/index', { posts: posts_formatted });
+      res.render('posts/index', { logged_in: true, user: req.query.user, posts: posts_formatted });
     });
   },
 
   Create: function(req, res) {
-    var post = new Post({ message: req.body.message });
+    var post = new Post({ message: req.body.message, user: req.body.user });
     post.save(function(err) {
       if (err) { throw err; }
-
-      res.status(201).redirect('/');
+      res.status(201).redirect('/posts?user=' + req.body.user);
     });
   }
 };

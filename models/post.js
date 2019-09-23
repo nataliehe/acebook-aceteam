@@ -6,6 +6,7 @@ var PostSchema = new mongoose.Schema({
        type: Date,
        default: Date.now
    },
+  user: String,
   comments: [{
     message: String,
     created: {
@@ -18,5 +19,3 @@ var PostSchema = new mongoose.Schema({
 var Post = mongoose.model('Post', PostSchema);
 
 module.exports = Post;
-
-

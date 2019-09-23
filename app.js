@@ -6,7 +6,9 @@ var logger = require('morgan');
 var exphbs = require('express-handlebars')
 var bodyParser = require('body-parser')
 
+
 // var homeRouter = require('./routes/home');
+var usersRouter = require('./routes/users');
 var postsRouter = require('./routes/posts');
 var commentsRouter = require('./routes/comments');
 
@@ -43,12 +45,14 @@ app.use(cookieParser());
 
 // route setup
 // app.use('/home', homeRouter);
+
 app.param('id', function(req, res, next, id) {
   req.post_id = id
   next()
-})
+});
 
-app.use('/', postsRouter);
+app.use('/', usersRouter);
+app.use('/posts', postsRouter);
 app.use('/posts/:id/comments', commentsRouter);
 
 // catch 404 and forward to error handler

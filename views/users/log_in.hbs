@@ -1,0 +1,22 @@
+<br/>
+<br/>
+<br/>
+<div class="row justify-content-center">
+<div class="card">
+  <div class="card-body">
+    <form action="/" method="POST">
+      <h3 class="card-title">Log in</h3>
+      <p class="card-text">Email
+        <input type="email" id="logInEmail" name="email" required>
+      </p>
+      <div class="invalid-feedback">
+        Please enter a valid email.
+      </div>
+      <p class="card-text">Password
+        <input type="password" id="logInPassword" name="password" required>
+      </p>
+      <p>{{error_message}}</p>
+      <button type="submit" class="btn btn-primary">Log in</button>
+    </form>
+  <a href="/sign_up" class="card-link">New user? Click here to sign up here</a>
+</div>
