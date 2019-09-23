@@ -1,7 +1,6 @@
 var User = require('../models/user');
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
-var logged_in = false;
 var error_message;
 
 var UsersController = {
@@ -20,7 +19,7 @@ var UsersController = {
     });
   },
   Login: function(req, res) {
-    res.render('users/log_in', {error_message: error_message});
+    res.render('users/log_in', {logged_in: false, error_message: error_message});
     error_message = '';
   },
   Authenticate: function(req, res) {
@@ -28,7 +27,6 @@ var UsersController = {
     var logInPassword = req.body.password;
     User.find({email: logInEmail}, function(err, user) {
       if (err) { throw err; }
-      console.log('user: ' + user);
       if (user == undefined || user.length == 0) {
         error_message = 'Incorrect email address, please try again.';
         res.status(201).redirect('/');
@@ -39,18 +37,14 @@ var UsersController = {
           if (matched !=  true) {
             error_message = 'Incorrect password, please try again.';
             res.status(201).redirect('/');
-            // throw new Error('Incorrect password, please try again.');
           } else {
-            logged_in = true;
-            res.status(201).redirect('/posts');
+            res.status(201).redirect('/posts?user=' + user[0].name);
           }
         });
       }
     });
-    return logged_in;
   },
   Logout: function(req, res) {
-    logged_in = false;
     res.status(201).redirect('/');
   }
 };

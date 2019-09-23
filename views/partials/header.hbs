@@ -2,13 +2,15 @@
   <a href="/"><b>Acebook</b></a>
   <div id="navbarNav">
     <ul class="navbar-nav">
-    {{!--Conditional upon user authentic being implemented  --}}
-     {{!--       <li>
-        <a class="nav-link" href="#">Sign out</a>
-      </li> --}}
-      <li>
-        <a class="nav-link" href="/">Log in</a>
-      </li>
+      {{#if logged_in}}
+        <li>
+          <a class="nav-link" href="/">Log out</a>
+        </li>
+      {{else}}
+        <li>
+          <a class="nav-link" href="/">Log in</a>
+        </li>
+      {{/if}}
       <li>
         <a class="nav-link" href="/sign_up">Sign up</a>
       </li>
@@ -16,5 +18,8 @@
         <a class="nav-link" href="#about">About</a>
       </li>
     </ul>
+    {{#if logged_in}}
+      Welcome {{user}}
+    {{/if}}
   </div>
 </nav>

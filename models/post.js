@@ -5,11 +5,10 @@ var PostSchema = new mongoose.Schema({
   created: {
        type: Date,
        default: Date.now
-   }
+   },
+   user: String
 });
 
 var Post = mongoose.model('Post', PostSchema);
 
 module.exports = Post;
-
-
