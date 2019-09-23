@@ -19,7 +19,7 @@ app.set('view engine', '.hbs');
 app.engine('.hbs', exphbs({
   extname: '.hbs',
   defaultLayout: 'layout',
-    layoutsDir: viewsPath,
+  layoutsDir: viewsPath,
   partialsDir: viewsPath + '/partials'
   // helpers: viewsPath + '/helpers'
 }));
@@ -38,16 +38,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //misc app config
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // route setup
 // app.use('/home', homeRouter);
+app.param('id', function(req, res, next, id) {
+  req.post_id = id
+  next()
+})
+
 app.use('/', postsRouter);
-app.use('/comment', commentsRouter);
+app.use('/posts/:id/comments', commentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  console.log('Routing error')
   next(createError(404));
 });
 
