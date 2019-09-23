@@ -14,13 +14,25 @@
 
     <!-- <div class="dropdown-divider"></div> -->
 
-    <ul class="posts">
+    <ul class="posts" style="list-style: none;" >
       {{#each posts}}
       <hr>
       <li>
         <p>{{this.user}} {{this.created}}</p>
         <pre>{{this.message}}</pre>
+          <a href="/posts/{{this.id}}/comments/new">
+            <button class="btn btn-warning btn-sm py-0" style="font-size: 0.8em">
+              Add Comment
+            </button>
+          </a>
+          <ul>
+            {{#each this.comments}}
+            <li style="list-style: none;"> {{message}} </li>
+            <hr/>
+            {{/each}}
+          </ul>
       </li>
+      <hr/>
       {{/each}}
     </ul>
   </div>

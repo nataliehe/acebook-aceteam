@@ -64,5 +64,5 @@ typings/
 cypress/screenshots
 cypress/videos
 
-# macOS .DS_Store files
+## misc
 .DS_Store
