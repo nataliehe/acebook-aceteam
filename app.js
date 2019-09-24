@@ -27,7 +27,8 @@ app.engine('.hbs', exphbs({
 }));
 
 // Set static filepaths
-app.use(express.static(path.join(__dirname, '/public')));
+// app.use('/public', express.static(path.join(__dirname, '/public')));
+app.use('/static', express.static('public'));
 
 //bodyParser config
 app.use(bodyParser.json()); // for parsing application/json
