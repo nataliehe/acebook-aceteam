@@ -3,7 +3,7 @@ var Post = require('../models/post.js');
 var CommentsController = {
   New: function(req, res) {
     var post_id = req.post_id;
-    res.render('comments/new_comment', {post_id: post_id });
+    res.render('comments/new_comment', {post_id: post_id, logged_in: true, user: req.cookies.user});
   },
   Create: function(req, res){
     var post_id = req.post_id;

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a href="/"><b>Acebook</b></a>
+  <a href="/posts" id="brand-name"><b>Acebook</b></a>
   <div id="navbarNav">
     <ul class="navbar-nav">
       {{#if logged_in}}
@@ -14,9 +14,12 @@
         <a class="nav-link" href="/sign_up">Sign up</a>
       </li>
       {{/if}}
-    </ul>
     {{#if logged_in}}
+    <span class="navbar-text" id="welcome-user">
       Welcome {{user}}
+    </span>
     {{/if}}
+  </li>
+  </ul>
   </div>
 </nav>
