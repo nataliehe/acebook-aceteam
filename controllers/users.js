@@ -38,7 +38,8 @@ var UsersController = {
             error_message = 'Incorrect password, please try again.';
             res.status(201).redirect('/');
           } else {
-            res.status(201).redirect('/posts?user=' + user[0].name);
+            res.cookie('user', user[0].name);
+            res.status(201).redirect('/posts');
           }
         });
       }

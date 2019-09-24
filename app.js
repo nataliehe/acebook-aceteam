@@ -28,10 +28,6 @@ app.engine('.hbs', exphbs({
 
 // Set static filepaths
 app.use(express.static(path.join(__dirname, '/public')));
-app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css/')));
-app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
-app.use('/js', express.static(path.join(__dirname, 'node_modules/popper.js/dist/')));
-app.use('/js', express.static(path.join(__dirname, 'node_modules/jquery/dist/')));
 
 //bodyParser config
 app.use(bodyParser.json()); // for parsing application/json
@@ -44,8 +40,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // route setup
-// app.use('/home', homeRouter);
-
 app.param('id', function(req, res, next, id) {
   req.post_id = id
   next()

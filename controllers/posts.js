@@ -2,7 +2,6 @@ var Post = require('../models/post');
 
 var PostsController = {
   Index: function(req, res) {
-
     Post.find({}).sort({created: -1}).exec(function(err, posts) {
       if (err) { throw err; }
       var posts_formatted = posts.map( post => {
@@ -14,7 +13,8 @@ var PostsController = {
         post_f["comments"] = post.comments;
         return post_f;
       });
-      res.render('posts/index', { logged_in: true, user: req.query.user, posts: posts_formatted });
+      console.log(req.cookies.user);
+      res.render('posts/index', { logged_in: true, user: req.cookies.user, posts: posts_formatted });
     });
   },
 
@@ -22,7 +22,7 @@ var PostsController = {
     var post = new Post({ message: req.body.message, user: req.body.user });
     post.save(function(err) {
       if (err) { throw err; }
-      res.status(201).redirect('/posts?user=' + req.body.user);
+      res.status(201).redirect('/posts');
     });
   }
 };
