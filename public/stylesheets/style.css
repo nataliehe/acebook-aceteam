@@ -5,3 +5,11 @@ body {
 a {
 
 }
+
+#error-message {
+  color: red;
+}
+
+#error-message.p {
+  align: center;
+}

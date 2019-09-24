@@ -26,6 +26,9 @@ app.engine('.hbs', exphbs({
   // helpers: viewsPath + '/helpers'
 }));
 
+// Set static filepaths
+app.use('/static', express.static('public'));
+
 //bodyParser config
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
