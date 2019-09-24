@@ -11,7 +11,7 @@ var CommentsController = {
     Post.findByIdAndUpdate(post_id, {$push: {comments: { message: comment}}}, function(err, post) {
       if (err) throw err;
     });
-    res.redirect('/');
+    res.redirect('/posts');
   }
 }
 
