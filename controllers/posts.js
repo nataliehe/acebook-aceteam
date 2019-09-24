@@ -13,7 +13,6 @@ var PostsController = {
         post_f["comments"] = post.comments;
         return post_f;
       });
-      console.log(req.cookies.user);
       res.render('posts/index', { logged_in: true, user: req.cookies.user, posts: posts_formatted });
     });
   },
